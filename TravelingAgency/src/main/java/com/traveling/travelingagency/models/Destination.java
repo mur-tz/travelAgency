@@ -1,4 +1,4 @@
-package com.traveling.travelingagency.dtos;
+package com.traveling.travelingagency.models;
 
 public class Destination extends Base{
     private String Country, City, Airport;

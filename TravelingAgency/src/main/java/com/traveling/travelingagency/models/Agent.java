@@ -1,4 +1,4 @@
-package com.traveling.travelingagency.dtos;
+package com.traveling.travelingagency.models;
 
 public class Agent extends Base{
     private String Name, LastName1, LastName2;
