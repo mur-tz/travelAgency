@@ -1,4 +1,4 @@
-package com.traveling.travelingagency.dtos;
+package com.traveling.travelingagency.models;
 
 import java.time.LocalDateTime;
 
