@@ -14,7 +14,7 @@ public class AgentController {
     @Autowired
     private AgentService agentService;
 
-    @GetMapping("/retrieveagents")
+    @GetMapping("/api/retrieveagents")
     public ArrayList<Base> RetrieveAgents(){
         return agentService.RetrieveAll();
     }

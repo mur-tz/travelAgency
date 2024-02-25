@@ -2,14 +2,12 @@ package com.traveling.travelingagency.models;
 
 public class Agent extends Base{
     private String Name, LastName1, LastName2;
-    private int ClientId;
 
-    public Agent(int id, String name, String lastName1, String lastName2, int clientId) {
+    public Agent(int id, String name, String lastName1, String lastName2) {
         super(id);
         Name = name;
         LastName1 = lastName1;
         LastName2 = lastName2;
-        ClientId = clientId;
     }
 
     public Agent(int id) {
@@ -40,11 +38,4 @@ public class Agent extends Base{
         LastName2 = lastName2;
     }
 
-    public int getClientId() {
-        return ClientId;
-    }
-
-    public void setClientId(int clientId) {
-        ClientId = clientId;
-    }
 }
