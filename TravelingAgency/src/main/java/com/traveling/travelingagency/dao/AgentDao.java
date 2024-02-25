@@ -5,10 +5,7 @@ import com.traveling.travelingagency.models.Base;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,28 +18,64 @@ public class AgentDao implements DaoInterf{
         this.con = dbConnection;
     }
     @Override
-    public void Create(Base model) {
+    public void create(Base model) {
+        Agent agent = (Agent)model;
+        String query = "INSERT INTO agent (id_agent, name, lastName1, lastName2) VALUES (?,?,?,?)";
+        Connection conn = null;
+        try {
+            conn = con.getConnection();
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setInt(1, agent.getId());
+            st.setString(2, agent.getName());
+            st.setString(3, agent.getLastName1());
+            st.setString(4, agent.getLastName2());
+            st.execute();
+            conn.close();
+
+        } catch (SQLException e){
+            e.printStackTrace();;
+        }
+    }
+
+    @Override
+    public void update(Base model) {
         Agent agent = (Agent)model;
         System.out.println("Agent created" + agent.getId());
     }
 
     @Override
-    public void Update(Base model) {
-        Agent agent = (Agent)model;
-        System.out.println("Agent created" + agent.getId());
+    public Base retrieveById(int id) {
+        Agent agent = new Agent(0);
+        String query = "SELECT * FROM agent WHERE Id_Agent = ?";
+        Connection conn = null;
+        try {
+            conn = con.getConnection();
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setInt(1, id);
+            ResultSet res = st.executeQuery();
+
+            if (res.next()){
+                agent.setId(1);
+                agent.setName(res.getString(2));
+                agent.setLastName1(res.getString(3));
+                agent.setLastName2(res.getString(4));
+            }
+            conn.close();
+
+        } catch (SQLException e){
+            e.printStackTrace();;
+        }
+
+        return agent;
     }
 
     @Override
-    public Base RetrieveById(int id) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Base> RetrieveAll() {
+    public ArrayList<Base> retrieveAll() {
         ArrayList<Base> agents = new ArrayList<>();
         String query = "SELECT * FROM agent;";
+        Connection conn = null;
         try {
-            Connection conn = con.getConnection();
+            conn = con.getConnection();
             Statement st = conn.createStatement();
             ResultSet res = st.executeQuery(query);
 
@@ -53,6 +86,7 @@ public class AgentDao implements DaoInterf{
                 agent.setLastName2(res.getString(4));
                 agents.add(agent);
             }
+            conn.close();
 
         } catch (SQLException e){
             e.printStackTrace();;
@@ -62,7 +96,19 @@ public class AgentDao implements DaoInterf{
     }
 
     @Override
-    public void Delete(int id) {
-        System.out.println(id);
+    public void delete(int id) {
+
+        String query = "DELETE FROM agent WHERE Id_Agent = ?";
+        Connection conn = null;
+        try {
+            conn = con.getConnection();
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setInt(1, id);
+            st.execute();
+            conn.close();
+
+        } catch (SQLException e){
+            e.printStackTrace();;
+        }
     }
 }

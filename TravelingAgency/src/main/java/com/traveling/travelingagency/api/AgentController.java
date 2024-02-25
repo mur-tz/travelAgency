@@ -1,13 +1,12 @@
 package com.traveling.travelingagency.api;
 
+import com.traveling.travelingagency.models.Agent;
 import com.traveling.travelingagency.models.Base;
 import com.traveling.travelingagency.services.AgentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class AgentController {
@@ -15,7 +14,20 @@ public class AgentController {
     private AgentService agentService;
 
     @GetMapping("/api/retrieveagents")
-    public ArrayList<Base> RetrieveAgents(){
-        return agentService.RetrieveAll();
+    public ArrayList<Base> retrieveAgents(){
+        return agentService.retrieveAll();
+    }
+
+    @GetMapping("/api/retrieveagentbyid")
+    public Base retrieveAgentById(@RequestParam int id){
+        return agentService.retrieveById(id);
+    }
+    @PostMapping("/api/createagent")
+    public void createAgent(@RequestBody Agent agent){
+        agentService.create(agent);
+    }
+    @DeleteMapping("/api/deleteagent")
+    public void deleteAgent(@RequestParam int id){
+        agentService.delete(id);
     }
 }
