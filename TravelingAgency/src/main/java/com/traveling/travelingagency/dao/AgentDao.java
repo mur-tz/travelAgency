@@ -30,7 +30,6 @@ public class AgentDao implements DaoInterf{
             st.setString(3, agent.getLastName1());
             st.setString(4, agent.getLastName2());
             st.execute();
-            conn.close();
 
         } catch (SQLException e){
             e.printStackTrace();;
@@ -60,7 +59,6 @@ public class AgentDao implements DaoInterf{
                 agent.setLastName1(res.getString(3));
                 agent.setLastName2(res.getString(4));
             }
-            conn.close();
 
         } catch (SQLException e){
             e.printStackTrace();;
