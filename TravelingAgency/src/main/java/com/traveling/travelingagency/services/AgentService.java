@@ -6,39 +6,40 @@ import com.traveling.travelingagency.models.Base;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
-import java.util.List;
 
 @Service
 public class AgentService implements Services{
     @Autowired
     private AgentDao agentDao;
     @Override
-    public void Create(Base model) {
+    public void create(Base model) {
         Agent agent = (Agent)model;
-        // Validaciones del negocio
-        agentDao.Create(agent);
+        if (agent.getName() == null){
+            throw new IllegalArgumentException("El nombre no puede ser nulo");
+        }
+        agentDao.create(agent);
 
     }
 
     @Override
-    public void Update(Base model) {
+    public void update(Base model) {
         System.out.println(model.getId());
     }
 
     @Override
-    public Base RetrieveById(int id) {
-        return null;
+    public Base retrieveById(int id) {
+        return agentDao.retrieveById(id);
     }
 
     @Override
-    public ArrayList<Base> RetrieveAll() {
-        return agentDao.RetrieveAll();
+    public ArrayList<Base> retrieveAll() {
+        return agentDao.retrieveAll();
     }
 
     @Override
-    public void Delete(int id) {
-        System.out.println(id);
+    public void delete(int id){
+        agentDao.delete(id);
     }
 }

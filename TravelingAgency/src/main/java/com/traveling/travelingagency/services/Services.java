@@ -5,9 +5,9 @@ import com.traveling.travelingagency.models.Base;
 import java.util.List;
 
 public interface Services {
-    public void Create(Base model);
-    public void Update(Base model);
-    public Base RetrieveById(int id);
-    public List<Base> RetrieveAll();
-    public void Delete(int id);
+    public void create(Base model);
+    public void update(Base model);
+    public Base retrieveById(int id);
+    public List<Base> retrieveAll();
+    public void delete(int id);
 }
