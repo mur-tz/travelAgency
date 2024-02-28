@@ -13,20 +13,20 @@ public class AgentController {
     @Autowired
     private AgentService agentService;
 
-    @GetMapping("/api/retrieveagents")
+    @GetMapping("/api/agent/retrieveall")
     public ArrayList<Base> retrieveAgents(){
         return agentService.retrieveAll();
     }
 
-    @GetMapping("/api/retrieveagentbyid")
+    @GetMapping("/api/agent/retrievebyid")
     public Base retrieveAgentById(@RequestParam int id){
         return agentService.retrieveById(id);
     }
-    @PostMapping("/api/createagent")
+    @PostMapping("/api/agent/create")
     public void createAgent(@RequestBody Agent agent){
         agentService.create(agent);
     }
-    @DeleteMapping("/api/deleteagent")
+    @DeleteMapping("/api/agent/delete")
     public void deleteAgent(@RequestParam int id){
         agentService.delete(id);
     }
