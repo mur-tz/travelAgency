@@ -26,6 +26,11 @@ public class ServiceController {
     public void createService(@RequestBody Services service){
         serviceService.create(service);
     }
+
+    @PutMapping("/api/service/update")
+    public void updateService(@RequestBody Services service){
+        serviceService.update(service);
+    }
     @DeleteMapping("/api/service/delete")
     public void deleteService(@RequestParam int id){
         serviceService.delete(id);

@@ -24,7 +24,9 @@ public class ServiceService implements com.traveling.travelingagency.services.Se
 
     @Override
     public void update(Base model) {
-        System.out.println(model.getId());
+
+        Services service = (Services)model;
+        serviceDao.update(service);
     }
 
     @Override

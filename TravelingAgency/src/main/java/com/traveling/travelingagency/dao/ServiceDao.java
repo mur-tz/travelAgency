@@ -38,7 +38,26 @@ public class ServiceDao implements DaoInterf{
     @Override
     public void update(Base model) {
         Services service = (Services)model;
-        System.out.println("Service created" + service.getId());
+        String query = "UPDATE Service SET priceUSD = ?, serviceName = ?, description = ? WHERE id_service = ?";
+
+        Connection conn = null;
+        PreparedStatement st = null;
+        try {
+            conn = con.getConnection();
+            st = conn.prepareStatement(query);
+
+            st.setDouble(1, service.getPriceUSD());
+            st.setString(2, service.getServiceName());
+            st.setString(3, service.getDescription());
+            st.setInt(4, service.getId());
+            st.execute();
+
+
+
+        } catch (SQLException e) {
+            System.out.println("Error updating service: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @Override
