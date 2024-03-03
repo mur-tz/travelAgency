@@ -1,6 +1,6 @@
 package com.traveling.travelingagency.models;
 
-public class Agent extends Base{
+public class Agent extends  Base{
     private String Name, LastName1, LastName2;
 
     public Agent(int id, String name, String lastName1, String lastName2) {
