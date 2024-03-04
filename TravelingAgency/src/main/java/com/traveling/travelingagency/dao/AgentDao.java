@@ -39,7 +39,20 @@ public class AgentDao implements DaoInterf{
     @Override
     public void update(Base model) {
         Agent agent = (Agent)model;
-        System.out.println("Agent created" + agent.getId());
+        String query = "UPDATE Agent SET name = ?, lastName1 = ?, lastName2= ? WHERE id_agent = ?";
+        Connection conn = null;
+        try {
+            conn = con.getConnection();
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setInt(4, agent.getId());
+            st.setString(1, agent.getName());
+            st.setString(2, agent.getLastName1());
+            st.setString(3, agent.getLastName2());
+            st.execute();
+
+        } catch (SQLException e){
+            e.printStackTrace();;
+        }
     }
 
     @Override
@@ -95,7 +108,7 @@ public class AgentDao implements DaoInterf{
     @Override
     public void delete(int id) {
 
-        String query = "DELETE FROM agent WHERE Id_Agent = ?";
+        String query = "DELETE FROM Agent WHERE Id_Agent = ?";
         Connection conn = null;
         try {
             conn = con.getConnection();
