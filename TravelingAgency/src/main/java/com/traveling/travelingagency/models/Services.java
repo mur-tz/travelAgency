@@ -1,17 +1,17 @@
 package com.traveling.travelingagency.models;
 
-public class Service extends Base{
+public class Services extends Base{
     private double PriceUSD;
     private String ServiceName, Description;
 
-    public Service(int id, double priceUSD, String serviceName, String description) {
+    public Services(int id, double priceUSD, String serviceName, String description) {
         super(id);
         PriceUSD = priceUSD;
         ServiceName = serviceName;
         Description = description;
     }
 
-    public Service(int id) {
+    public Services(int id) {
         super(id);
     }
 
