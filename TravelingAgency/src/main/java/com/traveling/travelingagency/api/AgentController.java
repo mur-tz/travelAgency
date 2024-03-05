@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class AgentController {
     @Autowired
     private AgentService agentService;
-
+    @CrossOrigin
     @GetMapping("/api/agent/retrieveall")
     public ArrayList<Base> retrieveAgents(){
         return agentService.retrieveAll();
@@ -25,6 +25,10 @@ public class AgentController {
     @PostMapping("/api/agent/create")
     public void createAgent(@RequestBody Agent agent){
         agentService.create(agent);
+    }
+    @PutMapping("/api/agent/update")
+    public void updateAgent(@RequestBody Agent agent){
+        agentService.update(agent);
     }
     @DeleteMapping("/api/agent/delete")
     public void deleteAgent(@RequestParam int id){

@@ -25,7 +25,8 @@ public class AgentService implements Services{
 
     @Override
     public void update(Base model) {
-        System.out.println(model.getId());
+        Agent agent = (Agent)model;
+        agentDao.update(agent);
     }
 
     @Override
