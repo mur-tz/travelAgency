@@ -1,12 +1,13 @@
 package com.traveling.travelingagency.models;
 
 import java.time.LocalDate;
+import java.sql.Date;
 
 public class Booking extends Base{
-    private LocalDate BookingDate, BookingStartDate, BookingEndDate;
+    private Date BookingDate, BookingStartDate, BookingEndDate;
     private int PeopleCount, ClientId, AgentId, IdPackage, IdDestination;
 
-    public Booking(int id, LocalDate bookingDate, LocalDate bookingStartDate, LocalDate bookingEndDate, int peopleCount, int clientId, int agentId, int idPackage, int idDestination) {
+    public Booking(int id, Date bookingDate, Date bookingStartDate, Date bookingEndDate, int peopleCount, int clientId, int agentId, int idPackage, int idDestination) {
         super(id);
         BookingDate = bookingDate;
         BookingStartDate = bookingStartDate;
@@ -22,27 +23,27 @@ public class Booking extends Base{
         super(id);
     }
 
-    public LocalDate getBookingDate() {
+    public Date getBookingDate() {
         return BookingDate;
     }
 
-    public void setBookingDate(LocalDate bookingDate) {
+    public void setBookingDate(Date bookingDate) {
         BookingDate = bookingDate;
     }
 
-    public LocalDate getBookingStartDate() {
+    public Date getBookingStartDate() {
         return BookingStartDate;
     }
 
-    public void setBookingStartDate(LocalDate bookingStartDate) {
+    public void setBookingStartDate(Date bookingStartDate) {
         BookingStartDate = bookingStartDate;
     }
 
-    public LocalDate getBookingEndDate() {
+    public Date getBookingEndDate() {
         return BookingEndDate;
     }
 
-    public void setBookingEndDate(LocalDate bookingEndDate) {
+    public void setBookingEndDate(Date bookingEndDate) {
         BookingEndDate = bookingEndDate;
     }
 

@@ -23,7 +23,7 @@ private final DbConnection con;
     @Override
     public void create(Base model) {
         Booking booking = (Booking)model;
-        String query = "INSERT INTO booking (id_booking,bookingDate, bookingStartDate, bookingEndDate, peopleCount, id_Client, id_Agent, id_Package, id_Destination) VALUES (?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO Booking (id_booking,bookingDate, bookingStartDate, bookingEndDate, peopleCount, id_Client, id_Agent, id_Package, id_Destination) VALUES (?,?,?,?,?,?,?,?,?)";
         Connection conn = null;
         try {
             conn = con.getConnection();
@@ -55,7 +55,7 @@ private final DbConnection con;
     @Override
     public Base retrieveById(int id) {
     Booking booking = new Booking(0);
-    String query = "SELECT * FROM booking WHERE Id_Booking = ?";
+    String query = "SELECT * FROM Booking WHERE Id_Booking = ?";
     Connection conn = null;
 
     try {
@@ -66,9 +66,9 @@ private final DbConnection con;
 
         if (res.next()){
             booking.setId(1);
-            booking.setBookingDate(res.getDate(2).toLocalDate());
-            booking.setBookingStartDate(res.getDate(3).toLocalDate());
-            booking.setBookingEndDate(res.getDate(4).toLocalDate());
+            booking.setBookingDate(res.getDate(2));
+            booking.setBookingStartDate(res.getDate(3));
+            booking.setBookingEndDate(res.getDate(4));
             booking.setPeopleCount(res.getInt(5));
             booking.setClientId(res.getInt(6));
             booking.setAgentId(res.getInt(7));
@@ -86,7 +86,7 @@ private final DbConnection con;
     @Override
     public ArrayList<Base> retrieveAll() {
         ArrayList<Base> bookings = new ArrayList<>();
-        String query = "SELECT * FROM booking;";
+        String query = "SELECT * FROM Booking;";
         Connection conn = null;
         try {
             conn = con.getConnection();
@@ -95,9 +95,9 @@ private final DbConnection con;
 
             while (res.next()){
                 Booking booking = new Booking(res.getInt(1));
-                booking.setBookingDate(res.getDate(2).toLocalDate());
-                booking.setBookingStartDate(res.getDate(3).toLocalDate());
-                booking.setBookingEndDate(res.getDate(4).toLocalDate());
+                booking.setBookingDate(res.getDate(2));
+                booking.setBookingStartDate(res.getDate(3));
+                booking.setBookingEndDate(res.getDate(4));
                 booking.setPeopleCount(res.getInt(5));
                 booking.setClientId(res.getInt(6));
                 booking.setAgentId(res.getInt(7));
@@ -115,7 +115,7 @@ private final DbConnection con;
 
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM booking WHERE Id_Booking = ?";
+        String query = "DELETE FROM Booking WHERE Id_Booking = ?";
         Connection conn = null;
         try {
             conn = con.getConnection();
