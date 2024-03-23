@@ -3,11 +3,11 @@ package com.traveling.travelingagency.models;
 import java.time.LocalDate;
 
 public class Client extends Base{
-    private String Name, LastName1, LastName2, Email, ClientIdentification, Nationality, Gender, ZipCode;
+    private String Name, LastName1, LastName2, Email, ClientIdentification, Nationality, Gender, ZipCode, Role, Password;
     private int Phone;
     private LocalDate BirthDate;
 
-    public Client(int id, String name, String lastName1, String lastName2, String email, String clientIdentification, String nationality, String gender, String zipCode, int phone, LocalDate birthDate) {
+    public Client(int id, String name, String lastName1, String lastName2, String email, String clientIdentification, String nationality, String gender, String zipCode, String role, String password, int phone, LocalDate birthDate) {
         super(id);
         Name = name;
         LastName1 = lastName1;
@@ -17,8 +17,26 @@ public class Client extends Base{
         Nationality = nationality;
         Gender = gender;
         ZipCode = zipCode;
+        Role = role;
+        Password = password;
         Phone = phone;
         BirthDate = birthDate;
+    }
+
+    public String getRole() {
+        return Role;
+    }
+
+    public void setRole(String role) {
+        Role = role;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
     }
 
     public Client(int id) {

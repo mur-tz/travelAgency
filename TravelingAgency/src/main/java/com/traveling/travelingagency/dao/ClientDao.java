@@ -21,7 +21,7 @@ public class ClientDao implements DaoInterf {
     @Override
     public void create(Base model) {
         Client client = (Client) model;
-        String query = "INSERT INTO Client (id_client, name, lastName1, lastName2, email, phone, clientIdentification, nationality, gender, zipCode, birthDate) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO Client (id_client, name, lastName1, lastName2, email, phone, clientIdentification, nationality, gender, zipCode, birthDate, role, password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         Connection conn = null;
         try {
             conn = con.getConnection();
@@ -37,6 +37,8 @@ public class ClientDao implements DaoInterf {
             st.setString(9, client.getGender());
             st.setString(10, client.getZipCode());
             st.setDate(11, Date.valueOf(client.getBirthDate()));
+            st.setString(12, client.getRole());
+            st.setString(13, client.getPassword());
             st.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,7 +49,7 @@ public class ClientDao implements DaoInterf {
     @Override
     public void update(Base model) {
         Client client = (Client) model;
-        String query = "UPDATE Client SET name = ?, lastName1 = ?, lastName2 = ? ,email = ?,phone = ?, clientIdentification = ?, nationality = ?, gender = ?, zipCode = ?, birthDate = ? WHERE id_client = ?";
+        String query = "UPDATE Client SET name = ?, lastName1 = ?, lastName2 = ? ,email = ?,phone = ?, clientIdentification = ?, nationality = ?, gender = ?, zipCode = ?, birthDate = ?, role = ?, password = ? WHERE id_client = ?";
         Connection conn = null;
         try {
             conn = con.getConnection();
@@ -62,7 +64,9 @@ public class ClientDao implements DaoInterf {
             st.setString(8, client.getGender());
             st.setString(9, client.getZipCode());
             st.setDate(10, Date.valueOf(client.getBirthDate()));
-            st.setInt(11, client.getId());
+            st.setInt(13, client.getId());
+            st.setString(11, client.getRole());
+            st.setString(12, client.getPassword());
             st.execute();
 
         } catch (SQLException e){
@@ -73,7 +77,7 @@ public class ClientDao implements DaoInterf {
     @Override
     public Base retrieveById(int id) {
         Client client = new Client(0);
-        String query = "SELECT * FROM client WHERE Id_Client = ?";
+        String query = "SELECT * FROM Client WHERE Id_Client = ?";
         Connection conn = null;
         try {
             conn = con.getConnection();
@@ -93,6 +97,8 @@ public class ClientDao implements DaoInterf {
                 client.setNationality(res.getString(9));
                 client.setGender(res.getString(10));
                 client.setZipCode(res.getString(11));
+                client.setRole(res.getString(13));
+                client.setPassword(res.getString(12));
 
             }
         } catch (SQLException e) {
@@ -124,6 +130,8 @@ public class ClientDao implements DaoInterf {
                 client.setNationality(res.getString(9));
                 client.setGender(res.getString(10));
                 client.setZipCode(res.getString(11));
+                client.setRole(res.getString(13));
+                client.setPassword(res.getString(12));
 
                 clients.add(client);
             }
