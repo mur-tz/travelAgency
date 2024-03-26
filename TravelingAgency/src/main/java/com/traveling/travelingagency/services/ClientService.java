@@ -3,6 +3,7 @@ package com.traveling.travelingagency.services;
 import com.traveling.travelingagency.dao.ClientDao;
 import com.traveling.travelingagency.models.Client;
 import com.traveling.travelingagency.models.Base;
+import com.traveling.travelingagency.models.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +43,14 @@ public class ClientService implements Services{
     @Override
     public void delete(int id) {
         clientDao.delete(id);
+    }
+
+    public Client login(LoginDTO creds){
+        Client client = (Client) clientDao.retrieveByEmail(creds.getEmail());
+        // validation if client does not exist
+        if (creds.getPassword().equals(creds.getPassword())){
+            return client;
+        }
+        return null;
     }
 }

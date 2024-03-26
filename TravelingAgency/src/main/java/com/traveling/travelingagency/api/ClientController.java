@@ -2,8 +2,10 @@ package com.traveling.travelingagency.api;
 
 import com.traveling.travelingagency.models.Client;
 import com.traveling.travelingagency.models.Base;
+import com.traveling.travelingagency.models.LoginDTO;
 import com.traveling.travelingagency.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -34,4 +36,9 @@ public class ClientController {
     public void deleteClient(@RequestParam int id){
         clientService.delete(id);
     }
+    @PostMapping("api/login")
+    public Client login(@RequestBody LoginDTO creds){
+        return clientService.login(creds);
+    }
+
 }

@@ -108,6 +108,39 @@ public class ClientDao implements DaoInterf {
         return client;
     }
 
+    public Base retrieveByEmail(String email) {
+        Client client = new Client(0);
+        String query = "SELECT * FROM Client WHERE EMAIL = ?";
+        Connection conn = null;
+        try {
+            conn = con.getConnection();
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, email);
+            ResultSet res = st.executeQuery();
+
+            if (res.next()) {
+                client.setId(1);
+                client.setName(res.getString(2));
+                client.setLastName1(res.getString(3));
+                client.setLastName2(res.getString(4));
+                client.setPhone(res.getInt(5));
+                client.setEmail(res.getString(6));
+                client.setClientIdentification(res.getString(7));
+                client.setBirthDate(res.getDate(8).toLocalDate());
+                client.setNationality(res.getString(9));
+                client.setGender(res.getString(10));
+                client.setZipCode(res.getString(11));
+                client.setRole(res.getString(13));
+                client.setPassword(res.getString(12));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return client;
+    }
+
     @Override
     public ArrayList<Base> retrieveAll() {
         ArrayList<Base> clients = new ArrayList<>();
