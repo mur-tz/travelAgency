@@ -33,9 +33,7 @@ public class PackageService {
         return packageDao.retrieveById(id);
     }
 
-    public ArrayList<Base> retrieveAll() {
-        return packageDao.retrieveAll();
-    }
+    public ArrayList<Base> retrieveAll() {return packageDao.retrieveAll();}
 
     public void delete(int id){
         packageDao.delete(id);

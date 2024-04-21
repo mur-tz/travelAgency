@@ -5,7 +5,7 @@ public class Package extends Base{
     private Double Price;
     private int IdService; // Could work better as an intermediate class
 
-    public Package(int id, String description, Double price, int idService) {
+    public Package(int id, String description, double price, int idService) {
         super(id);
         Description = description;
         Price = price;
@@ -24,11 +24,11 @@ public class Package extends Base{
         Description = description;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return Price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         Price = price;
     }
 
