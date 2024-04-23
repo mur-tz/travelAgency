@@ -3,7 +3,7 @@ package com.traveling.travelingagency.models;
 public class Package extends Base{
     private String Description;
     private Double Price;
-    private int IdService; // Could work better as an intermediate class
+    private int IdService;
 
     public Package(int id, String description, double price, int idService) {
         super(id);
